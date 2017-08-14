@@ -4,11 +4,11 @@ PFont mono;
 int r = 200;
 int yearsOfRadioactivity = 0;
 float BGcount = 0, volume = -20.0, setVolume = volume;
-boolean gameStart = false, blink = false, pause = false,
-    playSound = true, idleMode = true, showIdleModeText = true;
-color water = color(0, 150, 255), white = color(255), black = color(0),
+boolean gameStart = false, blink = false, pause = false, 
+  playSound = true, idleMode = true, showIdleModeText = true;
+color water = color(0, 150, 255), white = color(255), black = color(0), 
   drilling = color(255, 0, 0), radWaste = color(0, 255, 0), 
-    grass = color(10, 255, 50), land = color(180, 100, 10);
+  grass = color(10, 255, 50), land = color(180, 100, 10);
 void settings() {
   int theHeight = floor((displayHeight - 50) / 100) * 100;
   println(theHeight);
@@ -101,8 +101,10 @@ void frame() {
 int radioactivityLevel() {
   //returns the years of radioactivity left as an int
   //high the radition level is based on time 2017 – 12017
-  int y = year();
-  yearsOfRadioactivity = 12017 - y;
+  //int y = year();
+  //yearsOfRadioactivity = 12017 - y;
+  int y = second();
+  yearsOfRadioactivity = 59 - y;
   return yearsOfRadioactivity;
 }
 PImage radioactivity() {

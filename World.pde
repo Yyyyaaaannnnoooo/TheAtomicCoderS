@@ -202,7 +202,8 @@ class World {
     //radiation shooter
     if (frameCount % 30 == 0 && ion.size() < 10) {   
       // shoot as many ions as the level of radioactivity
-      int shootingIons = floor(map( radioactivityLevel(), 10000, 0, 100, 0));
+      //int shootingIons = floor(map( radioactivityLevel(), 10000, 0, 100, 0)); IF YEARS
+      int shootingIons = floor(map( radioactivityLevel(), 59, 0, 100, 0));
       println(shootingIons);
       for (int i = 0; i < shootingIons; i++) {
         Icon target = icon.get(floor(random(icon.size())));
