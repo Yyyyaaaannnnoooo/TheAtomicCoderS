@@ -6,12 +6,11 @@ int yearsOfRadioactivity = 0;
 float BGcount = 0, volume = -20.0, setVolume = volume;
 boolean gameStart = false, blink = false, pause = false, 
   playSound = true, idleMode = true, showIdleModeText = true;
-color water = color(0, 150, 255), white = color(255), black = color(0), 
+color water = color(0, 150, 255), white = color(255), black = color(0), grey = color(51),
   drilling = color(255, 0, 0), radWaste = color(0, 255, 0), 
   grass = color(10, 255, 50), land = color(180, 100, 10);
 void settings() {
   int theHeight = floor((displayHeight - 50) / 100) * 100;
-  println(theHeight);
   size(1400, theHeight, P3D);
 }
 void setup() {
@@ -51,13 +50,13 @@ void draw() {
     stroke(white);     
     rect(0, 20, 450, 100);    
     fill(white);
-    text("PRESS THE MOUSE TO START", 0, 0);
+    text("CLICK THE MOUSE TO START", 0, 0);
     popMatrix();
   }
   if (gameStart && !pause) {
     world.update();
     noFill();
-    stroke(255);
+    stroke(drilling);
     rectMode(CORNER);
     rect(50, 50, 200, height - 100);
     image(radioactivity(), 50, 50);

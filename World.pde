@@ -71,8 +71,8 @@ class World {
       monoliths[i] = new Facility(x, y, 0, w, 90, 35, angle, white, black, true, true);
     }
     //the vault
-    vault = new Facility (posFacilityX, posFacilityY, 15, w, 45, 30, 0, black, radWaste, true, false);
-    radioactiveLager = new Facility(originX * cell, ((originY - 30) * cell), drillDepth, 150, 350, 50, 0, black, radWaste, true, false);
+    vault = new Facility (posFacilityX, posFacilityY, 15, w, 45, 30, 0, grey, drilling, true, false);
+    radioactiveLager = new Facility(originX * cell, ((originY - 30) * cell), drillDepth, 150, 350, 50, 0, grey, drilling, true, false);
     //the driller with attached a stream
     for (int i = 0; i < drillingMachine.length; i++){
   drillingMachine[i] = new Facility(drillerPosX, 0, 25, 25, 120, 50, i * PI, black, drilling, true, true);
@@ -227,7 +227,7 @@ class World {
     for (Facility f : drillingMachine) f.show();
     vault.show();
     radioactiveLager.show();
-    facilityConnection(vault, radioactiveLager, radWaste);
+    facilityConnection(vault, radioactiveLager, drilling);
   }
   ///the terrain of the world
   void terrain() {
