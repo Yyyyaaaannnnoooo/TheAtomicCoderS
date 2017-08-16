@@ -1,7 +1,7 @@
 World world;
 Audio a;
 PFont mono;
-int r = 200;
+int gutter = 50, radioactiveImgWidth;
 int yearsOfRadioactivity = 0;
 float BGcount = 0, volume = -20.0, setVolume = volume;
 boolean gameStart = false, blink = false, pause = false, 
@@ -28,6 +28,7 @@ void setup() {
   textAlign(CENTER);
   textSize(24);
   textFont(mono);
+  radioactiveImgWidth = ((width / 2) - (world.w / 2)) - int(1.5 * gutter);
 }
 void draw() {
   //lights(); 
@@ -65,11 +66,12 @@ void draw() {
     noFill();
     stroke(drilling);
     rectMode(CORNER);
-    rect(50, 50, 200, height - 100);
-    image(radioactivity(), 50, 50);
+    rect(gutter, gutter, radioactiveImgWidth, height - 2 * gutter);
+    image(radioactivity(), gutter, gutter);
     textAlign(LEFT);
     fill(white);
-    text("PRESS SPACEBAR TO PAUSE\nPRESS 'R' TO RESTORE THE PADDLE", width - 430, 100, 350, 900);
+    int posX = width / 2 + world.w / 2;
+    text("PRESS SPACEBAR TO PAUSE\nPRESS 'R' TO RESTORE THE PADDLE", posX + gutter * 0.5, 100, width - posX - 1.5 * gutter, 900);
   }  
   world.worldRotation();
   world.show();
@@ -118,7 +120,7 @@ int radioactivityLevel() {
 }
 PImage radioactivity() {
   imageMode(CORNER);
-  PImage img = createImage(200, height - 100, RGB);
+  PImage img = createImage(radioactiveImgWidth, height - 2 * gutter, RGB);
   //int amountOfRadioactivityLeft = floor(map(radioactivityLevel(),10000, 0, 0, img.pixels.length));
   //if minute
   int amountOfRadioactivityLeft = floor(map(radioactivityLevel(), 59, 0, 0, img.pixels.length));
@@ -154,7 +156,4 @@ void keyPressed() {
 void keyReleased() {
   world.paddle.move(0);
   world.paddle.move(0);
-}
-void mousePressed() {
-  idleMode = false;
 }

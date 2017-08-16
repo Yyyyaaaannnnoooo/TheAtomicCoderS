@@ -10,7 +10,7 @@ class World {
   Facility[] drillingMachine = new Facility[2];
   Paddle paddle;
   int killedLivingCreatures = 0;
-  int originX, originY;
+  int originX, originY, r = 200;
   int cols, rows, w = 950, h = height - 50;
   int posX = 0, posY = 0, cell = 10, posFacilityX, posFacilityY, drillerPosX, drillerPosY, drillAnimationY;
   int drillDeeper, drillDepth = -350, atomNum = 30;
