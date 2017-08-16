@@ -6,12 +6,17 @@ int yearsOfRadioactivity = 0;
 float BGcount = 0, volume = -20.0, setVolume = volume;
 boolean gameStart = false, blink = false, pause = false, 
   playSound = true, idleMode = true, showIdleModeText = true;
-color water = color(0, 150, 255), white = color(255), black = color(0), grey = color(51),
+color water = color(0, 150, 255), white = color(255), black = color(0), grey = color(51), 
   drilling = color(255, 0, 0), radWaste = color(0, 255, 0), 
   grass = color(10, 255, 50), land = color(180, 100, 10);
 void settings() {
-  int theHeight = floor((displayHeight - 50) / 100) * 100;
-  size(1400, theHeight, P3D);
+  //int theHeight = floor((displayHeight - 50) / 100) * 100;
+  //int theWidth = floor((displayWidth - 50) / 100) * 100;
+  //use this when fullscreen
+  int theHeight = floor((displayHeight) / 100) * 100;
+  int theWidth = floor((displayWidth) / 100) * 100;
+  //size(theWidth, theHeight, P3D);
+  fullScreen(P3D);
 }
 void setup() {
   background(0); 
@@ -39,6 +44,7 @@ void draw() {
     fill(black);
     rect(0, 20, 450, 100);    
     fill(white);
+    textAlign(CENTER);
     text("DO YOU WANT TO LEAVE THE GAME?\nY/N\nDIED CREATURES: " + world.killedLivingCreatures, 0, 0);
     popMatrix();
   }
@@ -49,8 +55,9 @@ void draw() {
     fill(black);
     stroke(white);     
     rect(0, 20, 450, 100);    
-    fill(white);
-    text("CLICK THE MOUSE TO START", 0, 0);
+    fill(white);    
+    textAlign(CENTER);
+    text("PRESS ENTER TO START", 0, 0);
     popMatrix();
   }
   if (gameStart && !pause) {
@@ -60,6 +67,9 @@ void draw() {
     rectMode(CORNER);
     rect(50, 50, 200, height - 100);
     image(radioactivity(), 50, 50);
+    textAlign(LEFT);
+    fill(white);
+    text("PRESS SPACEBAR TO PAUSE\nPRESS 'R' TO RESTORE THE PADDLE", width - 430, 100, 350, 900);
   }  
   world.worldRotation();
   world.show();
@@ -121,6 +131,7 @@ PImage radioactivity() {
   return img;
 }
 void keyPressed() {
+  println(keyCode);
   if (key == ' ') pause = true;
   if (world.paddle.w <= 20)if (key == 'r')world.paddle.w = 100;
   if (pause) {
@@ -134,6 +145,15 @@ void keyPressed() {
     }
     if (key == 'n')pause = !pause;
   }
+  if (keyCode == 10)idleMode = false;
+  if (key == CODED) {
+    if (keyCode == LEFT)world.paddle.move(-10);
+    if (keyCode == RIGHT)world.paddle.move(10);
+  }
+}
+void keyReleased() {
+  world.paddle.move(0);
+  world.paddle.move(0);
 }
 void mousePressed() {
   idleMode = false;

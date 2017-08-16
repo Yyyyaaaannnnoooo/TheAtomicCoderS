@@ -3,13 +3,21 @@ class Paddle {
   int h = 40;
   int d = 20;
   float x = 520, y = 0;
-  Paddle(int posY) {
+  int yUpdate = 0;
+  int theCanvasWidth;
+  Paddle(int posY, int canvasWidth) {
     rectMode(CENTER);
     y = posY;
+    theCanvasWidth = canvasWidth;
   }
-  void update(float pos) {
-    x = pos;
+  void update() {
+    x += yUpdate;
+    x = constrain(x, 0, theCanvasWidth);
     if (w <= 20)w = 20;
+  }
+  void move(int inc) {
+    yUpdate = inc;
+    
   }
   void show() {
     fill(255);

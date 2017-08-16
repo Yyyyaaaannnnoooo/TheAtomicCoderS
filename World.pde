@@ -11,7 +11,7 @@ class World {
   Paddle paddle;
   int killedLivingCreatures = 0;
   int originX, originY;
-  int cols, rows, w = 800, h = height - 50;
+  int cols, rows, w = 950, h = height - 50;
   int posX = 0, posY = 0, cell = 10, posFacilityX, posFacilityY, drillerPosX, drillerPosY, drillAnimationY;
   int drillDeeper, drillDepth = -350, atomNum = 30;
   int iconNumber = 30;
@@ -60,18 +60,18 @@ class World {
     drillerPosX = originX * cell;
     drillerPosY = (rows / 2) * cell;
     //the monoliths sorrounding the vault
-    posFacilityX = (originX + 20) * cell;
-    int w = 5 * cell;
+    posFacilityX = (originX + 35) * cell;
+    int ww = 5 * cell;
     int r = 7 * cell;
-    posFacilityY = w + r;
+    posFacilityY = ((originY - 10) * cell) - r;
     for (int i = 0; i < monoliths.length; i++) {
-      float angle = map(i, 0, monoliths.length, 0, TWO_PI);
+      float angle = map(i, 0, monoliths.length, 0 + QUARTER_PI, TWO_PI + QUARTER_PI);
       int x = posFacilityX + round(r * cos(angle));
       int y = posFacilityY + round(r * sin(angle));
-      monoliths[i] = new Facility(x, y, 0, w, 90, 35, angle, white, black, true, true);
+      monoliths[i] = new Facility(x, y, 0, ww, 90, 35, angle, white, black, true, true);
     }
     //the vault
-    vault = new Facility (posFacilityX, posFacilityY, 15, w, 45, 30, 0, grey, drilling, true, false);
+    vault = new Facility (posFacilityX, posFacilityY, 15, ww, 45, 30, 0, grey, drilling, true, false);
     radioactiveLager = new Facility(originX * cell, ((originY - 30) * cell), drillDepth, 150, 350, 50, 0, grey, drilling, true, false);
     //the driller with attached a stream
     for (int i = 0; i < drillingMachine.length; i++){
@@ -97,7 +97,7 @@ class World {
     }
     ///Water stream
     waterStream = new Stream(originX * cell, 0, -200, originX * cell, originY * cell, 0, water, true);
-    paddle = new Paddle(floor(rows * 0.55) * cell);
+    paddle = new Paddle(floor(rows * 0.55) * cell, w);
   }
   //set the world in perspective and back to topo view
   void worldRotation() {
@@ -177,7 +177,7 @@ class World {
     el.add(new Electron(random(TWO_PI), random(TWO_PI), originX * cell, originY * cell, 50, 150, 50));
   }
   void update() {
-    paddle.update(constrain(mouseX, 0, cols * cell));
+   paddle.update();
     for (int i = ion.size() - 1; i >= 0; i--) {
       Particle p = ion.get(i);
       if (p.removeParticle) {
