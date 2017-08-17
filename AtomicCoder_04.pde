@@ -46,7 +46,7 @@ void draw() {
     rect(0, 20, 450, 100);    
     fill(white);
     textAlign(CENTER);
-    text("DO YOU WANT TO LEAVE THE GAME?\nY/N\nDIED CREATURES: " + world.killedLivingCreatures, 0, 0);
+    text("DO YOU WANT TO LEAVE THE GAME?\nY/N\nDEATH TOLL: " + world.killedLivingCreatures, 0, 0);
     popMatrix();
   }
   if (idleMode) {
