@@ -71,7 +71,7 @@ void draw() {
     textAlign(LEFT);
     fill(white);
     int posX = width / 2 + world.w / 2;
-    text("PRESS SPACEBAR TO PAUSE\nPRESS 'R' TO RESTORE THE PADDLE", posX + gutter * 0.5, 100, width - posX - 1.5 * gutter, 900);
+    text("PRESS SPACEBAR TO PAUSE\nPRESS 'R' TO RESTORE THE PADDLE\nUSE ARROW KEYS LEFT AND RIGHT TO MOVE THE PADDLE", posX + gutter * 0.5, 100, width - posX - 1.5 * gutter, 900);
   }  
   world.worldRotation();
   world.show();
